@@ -22,7 +22,9 @@ export class ChatGateway {
   }
 
   @SubscribeMessage('message')
-  async handleNew(client: any, data: MessageDTO) {
+  async handleNew(client: any, data: any) {
+    const data_ = JSON.parse(data) as MessageDTO
+    await this.chatService.save_message(data_) 
     client.broadcast.emit('message', data)
   }
 }

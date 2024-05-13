@@ -6,24 +6,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ChatService = void 0;
+exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
-let ChatService = class ChatService {
-    constructor() {
-        this.client_count = 0;
-    }
-    increment_client_count() {
-        this.client_count++;
-    }
-    decrement_client_count() {
-        this.client_count--;
-    }
-    get_client_count() {
-        return this.client_count;
-    }
+const app_controller_1 = require("./app.controller");
+const app_service_1 = require("./app.service");
+const chat_module_1 = require("./chat/chat.module");
+const typeorm_1 = require("@nestjs/typeorm");
+const ormconfig_1 = require("../ormconfig");
+let AppModule = class AppModule {
 };
-exports.ChatService = ChatService;
-exports.ChatService = ChatService = __decorate([
-    (0, common_1.Injectable)()
-], ChatService);
-//# sourceMappingURL=chat.service.js.map
+exports.AppModule = AppModule;
+exports.AppModule = AppModule = __decorate([
+    (0, common_1.Module)({
+        imports: [chat_module_1.ChatModule, typeorm_1.TypeOrmModule.forRoot(ormconfig_1.default)],
+        controllers: [app_controller_1.AppController],
+        providers: [app_service_1.AppService],
+    })
+], AppModule);
+//# sourceMappingURL=app.module.js.map

@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ChatGateway = void 0;
 const websockets_1 = require("@nestjs/websockets");
 const chat_service_1 = require("./chat.service");
-const message_dto_1 = require("./dto/message.dto");
 let ChatGateway = class ChatGateway {
     constructor(chatService) {
         this.chatService = chatService;
@@ -28,6 +27,8 @@ let ChatGateway = class ChatGateway {
         process.stdout.write(`Total connected: ${this.chatService.get_client_count()}\r`);
     }
     async handleNew(client, data) {
+        const data_ = JSON.parse(data);
+        await this.chatService.save_message(data_);
         client.broadcast.emit('message', data);
     }
 };
@@ -35,7 +36,7 @@ exports.ChatGateway = ChatGateway;
 __decorate([
     (0, websockets_1.SubscribeMessage)('message'),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, message_dto_1.MessageDTO]),
+    __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], ChatGateway.prototype, "handleNew", null);
 exports.ChatGateway = ChatGateway = __decorate([
