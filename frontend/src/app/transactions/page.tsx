@@ -1,26 +1,19 @@
-import Navbar from '@/components/Navbar';
 import React from 'react';
+import Navbar from '@/components/Navbar';
 
 function Transactions() {
   
   const transactionData = [
-    { transactionHash: 1, method: 1, block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: 1, block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: 1, block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: 1, block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: 1, block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: 1, block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: 1, block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: 1, block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: 1, block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: 1, block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: 1, block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: 1, block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: 1, block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: 1, block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: 1, block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
+    { transactionHash: 1, method: "Transfer", block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
+    { transactionHash: 1, method: "Transfer", block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
   ];
 
+  const convertToCSV = () => {
+    const csvContent =
+      "data:text/csv;charset=utf-8," +
+      transactionData.map((transaction) => Object.values(transaction).join(",")).join("\n");
+    return encodeURI(csvContent);
+  };
 
   return (
     <>
@@ -30,6 +23,13 @@ function Transactions() {
         <h2 className="mb-10 font-semibold">Last Transaction </h2>
         <h2 className="text-sm mb-12">
             2,369,458,379 transactions found in total
+            <a
+          href={convertToCSV()}
+          download="transactions-data.csv"
+          style={{float: 'right'}}
+        >
+          Download Page Data
+        </a>
         </h2>
         <div className="w-full">
           <table className="w-full divide-y divide-gray-200" style={{ margin: '20px' }}>

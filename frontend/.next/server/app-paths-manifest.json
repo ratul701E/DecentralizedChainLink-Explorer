@@ -1,5 +1,5 @@
 {
+  "/transactions/page": "app/transactions/page.js",
   "/blocks/page": "app/blocks/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/transactions/page": "app/transactions/page.js"
+  "/favicon.ico/route": "app/favicon.ico/route.js"
 }
