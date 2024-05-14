@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function Navbar () {
   return (
@@ -33,8 +33,8 @@ export default function Navbar () {
             </Link>
           </p>
           <p className="text-black hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium cursor-pointer tracking-tight" style={{ fontFamily: 'Open Sans, sans-serif' }}>
-            <Link href="/about">
-              About
+            <Link href="/documentation">
+              Documentation
             </Link>
           </p>
         </div>
