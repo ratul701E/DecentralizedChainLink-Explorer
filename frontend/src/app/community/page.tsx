@@ -13,7 +13,7 @@ function Community() {
   const toggleChatVisibility = () => {
     setShowChat(!showChat);
   };
-
+  
   return (
     <>
       <Navbar />

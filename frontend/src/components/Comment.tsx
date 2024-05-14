@@ -1,6 +1,6 @@
 // components/Comment.js
 import React from 'react';
-interface Comment {
+ interface Comment {
     id: number;
     text: string;
 }
