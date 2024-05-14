@@ -6,6 +6,14 @@ function Blocks() {
   const blocksData = [
     { blockNumber: 1, age: '5 minutes ago', transactions: 10, validator: '0x1234...' },
     { blockNumber: 2, age: '15 minutes ago', transactions: 8, validator: '0x5678...' },
+    { blockNumber: 2, age: '15 minutes ago', transactions: 8, validator: '0x5678...' },
+    { blockNumber: 2, age: '15 minutes ago', transactions: 8, validator: '0x5678...' },
+    { blockNumber: 2, age: '15 minutes ago', transactions: 8, validator: '0x5678...' },
+    { blockNumber: 2, age: '15 minutes ago', transactions: 8, validator: '0x5678...' },
+    { blockNumber: 2, age: '15 minutes ago', transactions: 8, validator: '0x5678...' },
+    { blockNumber: 2, age: '15 minutes ago', transactions: 8, validator: '0x5678...' },
+    { blockNumber: 2, age: '15 minutes ago', transactions: 8, validator: '0x5678...' },
+    { blockNumber: 2, age: '15 minutes ago', transactions: 8, validator: '0x5678...' },
   ];
 
   const convertToCSV = () => {
