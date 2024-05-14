@@ -636,6 +636,15 @@ video {
 .mt-8 {
   margin-top: 2rem;
 }
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+.mb-12 {
+  margin-bottom: 3rem;
+}
 .block {
   display: block;
 }
@@ -665,6 +674,9 @@ video {
 }
 .w-full {
   width: 100%;
+}
+.w-max {
+  width: max-content;
 }
 .max-w-max {
   max-width: max-content;
@@ -818,6 +830,10 @@ video {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 .font-bold {
   font-weight: 700;

@@ -14,6 +14,7 @@ function Community() {
   return (
     <>
       <Navbar />
+      <div style={{ margin: '40px' }}>
       <div className="flex justify-center mt-8">
         <button
           onClick={toggleChatVisibility}
@@ -23,6 +24,7 @@ function Community() {
         </button>
       </div>
       {showChat && <ChatRoom />}
+      </div>
     </>
   );
 }
