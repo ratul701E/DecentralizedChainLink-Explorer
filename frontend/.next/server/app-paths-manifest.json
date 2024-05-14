@@ -5,5 +5,5 @@
   "/community/page": "app/community/page.js",
   "/blocks/[blockHash]/page": "app/blocks/[blockHash]/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/addresses/[address]/page": "app/addresses/[address]/page.js"
+  "/transactions/[transactionHash]/page": "app/transactions/[transactionHash]/page.js"
 }
