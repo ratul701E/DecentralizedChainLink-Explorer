@@ -1,9 +1,13 @@
+'use client'
+
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import jsPDF from 'jspdf';
 
 function Documentation() {
+
   const downloadPDF = () => {
+
     const doc = new jsPDF('p', 'pt', 'a4');
 
     const text = `
@@ -66,6 +70,7 @@ function Documentation() {
         >
           Download PDF
         </a>
+        <br /><br /><br />
             In the digital age, where trust is often challenged and data security is paramount, blockchain emerges as a revolutionary technology promising to redefine various facets of our society. At its core, blockchain is a decentralized, immutable ledger that enables secure and transparent transactions among participants without the need for intermediaries. It serves as the foundational technology behind cryptocurrencies like Bitcoin, but its potential extends far beyond digital currencies, permeating industries ranging from finance and healthcare to supply chain management and voting systems.<br/><br/>
             Understanding Blockchain: How it Works<br/><br/>
             Blockchain operates on a distributed network of nodes, each maintaining a copy of the entire ledger. Transactions are grouped into blocks and linked together in a chronological chain through cryptographic hashes, creating a tamper-resistant record of all transactions. Consensus mechanisms, such as Proof of Work (PoW) or Proof of Stake (PoS), ensure agreement among network participants on the validity of transactions, thereby maintaining the integrity of the ledger.<br/><br/>
