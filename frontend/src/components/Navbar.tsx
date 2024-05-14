@@ -33,6 +33,11 @@ export default function Navbar () {
             </Link>
           </p>
           <p className="text-black hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium cursor-pointer tracking-tight" style={{ fontFamily: 'Open Sans, sans-serif' }}>
+            <Link href="/community">
+              Community
+            </Link>
+          </p>
+          <p className="text-black hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium cursor-pointer tracking-tight" style={{ fontFamily: 'Open Sans, sans-serif' }}>
             <Link href="/documentation">
               Documentation
             </Link>
