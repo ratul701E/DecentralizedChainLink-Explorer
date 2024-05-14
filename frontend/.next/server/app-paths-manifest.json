@@ -2,5 +2,8 @@
   "/transactions/page": "app/transactions/page.js",
   "/page": "app/page.js",
   "/blocks/page": "app/blocks/page.js",
-  "/community/page": "app/community/page.js"
+  "/community/page": "app/community/page.js",
+  "/blocks/[blockHash]/page": "app/blocks/[blockHash]/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/addresses/[address]/page": "app/addresses/[address]/page.js"
 }

@@ -48,11 +48,11 @@ function LatestBlocks() {
           {latestBlocks.map((block, index) => (
             <tr key={index}>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">{block.blockHash}</div>
+                <div className="text-sm text-gray-900"><Link href={`/blocks/${block.blockHash}`}><span className='text-blue-500'>{block.blockHash}</span></Link></div>
                 <div className="text-xs text-gray-500">{calculateElapsedTime(block.timestamp)}</div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">Block Validated By <Link href={"/addresses/0x0000..."}><span className = "text-blue-500">{block.blockValidator}</span></Link></div>
+                <div className="text-sm text-gray-900">Block Validated By <Link href={`/addresses/${block.blockValidator}`}><span className = "text-blue-500">{block.blockValidator}</span></Link></div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="text-sm text-gray-900">{block.transactions} DCL</div>
