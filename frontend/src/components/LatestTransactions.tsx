@@ -52,7 +52,7 @@ function LatestTransactions() {
                 <div className="text-xs text-gray-500">{calculateElapsedTime(transaction.timestamp)}</div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">From 0x0000... to 0x0001...</div>
+                <div className="text-sm text-gray-900">From <Link href={"/addresses/0x0000..."}><span className = "text-blue-500">0x0000...</span></Link> to <Link href={"/addresses/0x0000..."}><span className = "text-blue-500">0x0001...</span></Link></div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="text-sm text-gray-900">{transaction.value} DCL</div>
