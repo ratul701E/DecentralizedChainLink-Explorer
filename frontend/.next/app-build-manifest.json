@@ -1,9 +1,9 @@
 {
   "pages": {
-    "/page": [
+    "/transactions/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+      "static/chunks/app/transactions/page.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
@@ -16,15 +16,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/documentation/page.js"
     ],
-    "/community/page": [
+    "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/community/page.js"
-    ],
-    "/transactions/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/transactions/page.js"
+      "static/chunks/app/page.js"
     ],
     "/blocks/page": [
       "static/chunks/webpack.js",
@@ -36,10 +31,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/addresses/[address]/page.js"
     ],
-    "/_not-found/page": [
+    "/community/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/chunks/app/community/page.js"
     ]
   }
 }
