@@ -8,7 +8,7 @@ const config: PostgresConnectionOptions = {
   host: 'localhost',
   port: 5432,
   username: 'postgres',
-  password: 'postgres',
+  password: 'postgre',
   entities: [MessageEntity],
   synchronize: true,
 };
