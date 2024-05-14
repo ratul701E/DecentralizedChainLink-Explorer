@@ -1,4 +1,5 @@
 import Navbar from '@/components/Navbar'
+import Link from 'next/link';
 import React from 'react'
 
 function Block({ params }: { params: { blockHash: string } }) {
@@ -7,7 +8,7 @@ function Block({ params }: { params: { blockHash: string } }) {
     blockNumber: 123456,
     timestamp: '2024-05-15 10:30:00',
     transactions: 10,
-    miner: '0x1234567890abcdef'
+    validator: '0x1234567890abcdef'
   };
 
   return (
@@ -38,7 +39,7 @@ function Block({ params }: { params: { blockHash: string } }) {
               </div>
               <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt className="text-sm font-medium text-gray-500">Validator</dt>
-                <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{blockData.miner}</dd>
+                <dd className="mt-1 text-sm text-gray-900 sm:col-span-2"><Link href={`/addresses/${blockData.validator}`}><span className='text-blue-500'>{blockData.validator}</span></Link></dd>
               </div>
             </dl>
           </div>
