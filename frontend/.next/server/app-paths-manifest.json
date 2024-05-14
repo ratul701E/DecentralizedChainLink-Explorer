@@ -2,5 +2,8 @@
   "/transactions/page": "app/transactions/page.js",
   "/documentation/page": "app/documentation/page.js",
   "/page": "app/page.js",
-  "/blocks/page": "app/blocks/page.js"
+  "/blocks/page": "app/blocks/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/addresses/page": "app/addresses/page.js",
+  "/community/page": "app/community/page.js"
 }
