@@ -31,7 +31,7 @@ function Blocks() {
         <h2 className="mb-10 font-semibold">Last Safe Block <Link href={`/blocks/#19869880`}><span className='text-blue-500'>#19869880</span></Link></h2> 
         <h2 className="text-sm mb-12">
             Total of 19,869,905 blocks <br />
-            (Showing blocks between <Link href={`/blocks/#19869880`}><span className='text-blue-500'>#19869880</span></Link> to <Link href={`/blocks/#19869880`}><span className='text-blue-500'>#19869904</span></Link>)
+            (Showing blocks between <Link href={`/blocks/19869880`}><span className='text-blue-500'>#19869880</span></Link> to <Link href={`/blocks/#19869880`}><span className='text-blue-500'>#19869904</span></Link>)
             <a
               href={convertToCSV()}
               download="blocks-data.csv"

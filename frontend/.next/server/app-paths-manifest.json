@@ -1,8 +1,8 @@
 {
-  "/page": "app/page.js",
   "/documentation/page": "app/documentation/page.js",
-  "/transactions/[transactionHash]/page": "app/transactions/[transactionHash]/page.js",
+  "/blocks/[blockHash]/page": "app/blocks/[blockHash]/page.js",
+  "/blocks/page": "app/blocks/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/addresses/[address]/page": "app/addresses/[address]/page.js",
-  "/blocks/[blockHash]/page": "app/blocks/[blockHash]/page.js"
+  "/transactions/page": "app/transactions/page.js",
+  "/transactions/[transactionHash]/page": "app/transactions/[transactionHash]/page.js"
 }
