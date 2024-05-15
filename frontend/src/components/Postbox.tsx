@@ -1,29 +1,18 @@
 
 import React, { useState, useEffect } from 'react';
 import Comment from './Comment';
+import { IComment } from './CommunityPage';
 
 
-function PostBox() {
+
+function PostBox({comments}:any) {
     const [newComment, setNewComment] = useState('');
-    const [allComments, setAllComments] = useState<Comment[]>([]);
+    const [allComments, setAllComments] = useState<IComment[]>(comments);
 
-   
-    useEffect(() => {
-
-        const fetchedComments = [
-            { id: 1, text: "Comment 1" },
-            { id: 2, text: "Comment 2" }
-        ];
-        setAllComments(fetchedComments);
-    }, []);
 
     const handleCommentSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-        if (newComment.trim() !== '') {
-            const newCommentObj = { id: allComments.length + 1, text: newComment };
-            setAllComments([...allComments, newCommentObj]);
-            setNewComment('');
-        }
+        
     };
 
     return (
@@ -31,7 +20,7 @@ function PostBox() {
             <h3 className="text-lg font-semibold mb-2">Comments</h3>
             <div>
                 {allComments.map(comment => (
-                    <Comment key={comment.id} text={comment.text} id={comment.id} />
+                    <Comment key={comment.id} text={comment.content} id={comment.id} />
                 ))}
             </div>
             <form onSubmit={handleCommentSubmit} className="mt-4">

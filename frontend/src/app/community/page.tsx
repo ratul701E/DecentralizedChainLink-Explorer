@@ -4,12 +4,12 @@ import React, { useState } from 'react';
 import ChatRoom from '@/components/ChatRoom';
 import Navbar from '@/components/Navbar';
 import CommunityPage from '@/components/CommunityPage';
+import getAllPosts from './api/Post';
 
 
 
 function Community() {
   const [showChat, setShowChat] = useState(false);
-
   const toggleChatVisibility = () => {
     setShowChat(!showChat);
   };

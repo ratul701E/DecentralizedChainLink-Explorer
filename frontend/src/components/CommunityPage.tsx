@@ -1,7 +1,29 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Post from './Post';
 import CreatePostPage from './CreatePost';
+import getAllPosts from '@/app/community/api/Post';
+import getAllCommentByPostID from '@/app/community/api/Comment';
+import getAllVotesByPostID from '@/app/community/api/Vote';
+
+export interface IPost {
+    id: number;
+    title: string;
+    content: string;
+    postedOn: Date;
+    isEdited: boolean;
+    vote: number;
+    comments: IComment[]
+}
+
+export interface IComment {
+    id: number;
+    content: string;
+    timestamp: Date;
+    isEdited: boolean;
+}
+
+
 
 function CommunityPage() {
     const [createPost, setShowCreate] = useState(false);
@@ -10,29 +32,22 @@ function CommunityPage() {
         setShowCreate(!createPost);
     };
 
-    const [posts, setPosts] = useState([
-        {
-            id: 1,
-            title: "First Post",
-            content: "Content of the first post",
-            votes: 0,
-            comments: [
-                { id: 1, text: "First comment" },
-                { id: 2, text: "Second comment" },
-            ]
-        },
-        {
-            id: 2,
-            title: "Second Post",
-            content: "Content of the second post",
-            votes: 0,
-            comments: [
-                { id: 3, text: "Third comment" },
-                { id: 4, text: "Fourth comment" },
-            ]
-        },
-        // Add more posts as needed
-    ]);
+    const [posts, setPosts] = useState<IPost[]>([])
+
+    useEffect(() => {
+        const getPost = async () => {
+            const posts_:IPost[] = await getAllPosts()
+            
+            for(let post of posts_) {
+                //console.log(await getAllVotesByPostID(post.id))
+                post.vote = await getAllVotesByPostID(post.id)
+                post.comments = await getAllCommentByPostID(post.id)
+            }
+            setPosts(posts_)
+            console.log(posts)
+        }
+        getPost();
+    }, [])
 
     return (
         <div className="container mx-auto p-4">
@@ -53,8 +68,10 @@ function CommunityPage() {
                         id={post.id}
                         title={post.title}
                         content={post.content}
-                        votes={post.votes}
+                        vote={post.vote}
                         comments={post.comments}
+                        postedOn={post.postedOn}
+                        isEdited={post.isEdited}
                     />
                 ))}
             </div>
@@ -62,4 +79,5 @@ function CommunityPage() {
     );
 }
 
-export default CommunityPage;
+export default CommunityPage
+

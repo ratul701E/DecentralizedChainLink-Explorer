@@ -1,20 +1,25 @@
-// components/Post.js
-import React, { useState } from 'react';
+'use client'
+
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Comment from './Comment';
 import PostBox from './Postbox';
+import { IComment, IPost } from './CommunityPage';
+import getAllVotesByPostID, { addVote } from '@/app/community/api/Vote';
+import getAllCommentByPostID from '@/app/community/api/Comment';
+import getAllPosts from '@/app/community/api/Post';
 
-export interface Post {
-    id: number;
-    title: string;
-    content: string;
-    votes: number;
-    comments: Comment[];
-}
-
-function Post({ id, title, content, votes, comments }: Post) {
-    const [allComments, setAllComments] = useState(comments);
+function Post({ id, title, content, vote, comments }: IPost) {
     const [showPostBox, setShowPostBox] = useState(false);
+    const [refresh, setRefresh] = useState(false);
+    const [_vote, setVote] = useState(vote);
+
+    useEffect(() => {
+        const updateVoteCount = async () => {
+            setVote(await getAllVotesByPostID(id))
+        }
+        updateVoteCount();
+    }, [refresh])
 
     // const togglePostVisibility = () => {
     //     setShowPostBox(!showPostBox);
@@ -24,16 +29,27 @@ function Post({ id, title, content, votes, comments }: Post) {
         setShowPostBox(true);
     };
 
+    const upvote = async () => {
+        await addVote(id, 1)
+        setRefresh(!refresh)
+    }
+
+    const downvote = async () => {
+        await addVote(id, -1)
+        setRefresh(!refresh)
+    }
+
     return (
         <div className="bg-white shadow-md p-4 rounded-lg" onClick={handlePostClick}>
             <h2 className="text-xl font-semibold mb-2">{title}</h2>
             <p className="text-gray-600 mb-4">{content}</p>
             <div className="flex items-center mb-4">
-                <button className="mr-2">Upvote</button>
-                <span>{votes}</span>
-                <button className="ml-2">Downvote</button>
+                <button className="mr-2" onClick={upvote}>Upvote</button>
+                <span>{_vote}</span>
+                <button className="ml-2" onClick={downvote}>Downvote</button>
             </div>
-            {showPostBox && <PostBox />}
+            {showPostBox && <PostBox key={id} comments={comments}/>}
+
         </div>
     );
 }
