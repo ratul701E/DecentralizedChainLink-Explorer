@@ -1,18 +1,20 @@
+import { GetBlockchain, IBlock, ITransaction } from '@/app/api/Blockchain';
 import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
 
-function LatestBlocks() {
-  const latestBlocks = [
-    { blockHash: "0x123...", blockValidator: "0x0000...", timestamp: '2024-05-14 10:30:00', transactions: 15 },
-    { blockHash: "0x456...", blockValidator: "0x0000...", timestamp: '2024-05-14 09:45:00', transactions: 20 },
-    { blockHash: "0x789...", blockValidator: "0x0000...", timestamp: '2024-05-14 08:55:00', transactions: 12 },
-    { blockHash: "0x123...", blockValidator: "0x0000...", timestamp: '2024-05-14 10:30:00', transactions: 15 },
-    { blockHash: "0x456...", blockValidator: "0x0000...", timestamp: '2024-05-14 09:45:00', transactions: 20 },
-    { blockHash: "0x789...", blockValidator: "0x0000...", timestamp: '2024-05-14 08:55:00', transactions: 12 },
-    { blockHash: "0x123...", blockValidator: "0x0000...", timestamp: '2024-05-14 10:30:00', transactions: 15 },
-    { blockHash: "0x456...", blockValidator: "0x0000...", timestamp: '2024-05-14 09:45:00', transactions: 20 },
-    { blockHash: "0x789...", blockValidator: "0x0000...", timestamp: '2024-05-14 08:55:00', transactions: 12 },
-  ];
+async function LatestBlocks() {
+  let latestBlocks: IBlock[] = await GetBlockchain()
+  if(latestBlocks.length >10) latestBlocks = latestBlocks.slice(0,10)
+
+  console.log(latestBlocks)
+
+  function sumTransactionValues(transactions: ITransaction[]): number {
+    let sum = 0;
+    for (const transaction of transactions) {
+      sum += transaction.value;
+    }
+    return sum;
+  }
+
 
   const calculateElapsedTime = (timestamp: string | number | Date) => {
     const blockTime = new Date(timestamp).getTime();
@@ -48,14 +50,14 @@ function LatestBlocks() {
           {latestBlocks.map((block, index) => (
             <tr key={index}>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900"><Link href={`/blocks/${block.blockHash}`}><span className='text-blue-500'>{block.blockHash}</span></Link></div>
-                <div className="text-xs text-gray-500">{calculateElapsedTime(block.timestamp)}</div>
+                <div className="text-sm text-gray-900"><Link href={`/blocks/${block.blockInfo.blockHash}`}><span className='text-blue-500'>{block.blockInfo.blockHash.substring(0,4) + "..."}</span></Link></div>
+                <div className="text-xs text-gray-500">{calculateElapsedTime(block.blockInfo.timestamp)}</div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">Block Validated By <Link href={`/addresses/${block.blockValidator}`}><span className = "text-blue-500">{block.blockValidator}</span></Link></div>
+                <div className="text-sm text-gray-900">Block Validated By <Link href={`/addresses/${block.blockInfo.validator.publicKey}`}><span className="text-blue-500">{block.blockInfo.validator.publicKey}</span></Link></div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">{block.transactions} DCL</div>
+                <div className="text-sm text-gray-900">{sumTransactionValues(block.transactions)} DCL</div>
               </td>
             </tr>
           ))}
@@ -63,7 +65,7 @@ function LatestBlocks() {
       </table>
       <div className="flex justify-center mt-4 py-4">
         <Link href="/blocks">
-            <span className="text-gray-600 text-sm font-semibold">VIEW ALL BLOCKS &nbsp;&nbsp; →</span>
+          <span className="text-gray-600 text-sm font-semibold">VIEW ALL BLOCKS &nbsp;&nbsp; →</span>
         </Link>
       </div>
     </div>

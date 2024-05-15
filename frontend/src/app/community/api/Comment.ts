@@ -7,4 +7,22 @@ async function getAllCommentByPostID(postid: number){
     return comments
 }
 
+export async function PostComment(content:string, postID: number) {
+    try{
+        await axios.post(process.env.NEXT_PUBLIC_API_ENDPOINT+"/comments", {
+            content,
+            postID,
+            userID: 1
+        }, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        return true
+    }
+    catch(e) {
+        return false
+    }
+}
+
 export default getAllCommentByPostID

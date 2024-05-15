@@ -48,7 +48,7 @@ function Post({ id, title, content, vote, comments }: IPost) {
                 <span>{_vote}</span>
                 <button className="ml-2" onClick={downvote}>Downvote</button>
             </div>
-            {showPostBox && <PostBox key={id} comments={comments}/>}
+            {showPostBox && <PostBox key={id} comments={comments} postID={id} rf={refresh}/>}
 
         </div>
     );

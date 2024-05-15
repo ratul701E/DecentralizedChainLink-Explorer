@@ -1,18 +1,14 @@
+import { ITransaction } from '@/app/api/Blockchain';
+import { GetTransactions } from '@/app/api/Transaction';
 import Link from 'next/link';
 import React from 'react';
 
-function LatestTransactions() {
-  const latestTransactions = [
-    { hash: "0x123...", blockNumber: 1234567, timestamp: '2024-05-14 10:30:00', value: '1' },
-    { hash: "0x456...", blockNumber: 1234566, timestamp: '2024-05-14 09:45:00', value: '0.5' },
-    { hash: "0x789...", blockNumber: 1234565, timestamp: '2024-05-14 08:55:00', value: '2' },
-    { hash: "0x123...", blockNumber: 1234567, timestamp: '2024-05-14 10:30:00', value: '1' },
-    { hash: "0x456...", blockNumber: 1234566, timestamp: '2024-05-14 09:45:00', value: '0.5' },
-    { hash: "0x789...", blockNumber: 1234565, timestamp: '2024-05-14 08:55:00', value: '2' },
-    { hash: "0x123...", blockNumber: 1234567, timestamp: '2024-05-14 10:30:00', value: '1' },
-    { hash: "0x456...", blockNumber: 1234566, timestamp: '2024-05-14 09:45:00', value: '0.5' },
-    { hash: "0x789...", blockNumber: 1234565, timestamp: '2024-05-14 08:55:00', value: '2' },
-  ];
+async function LatestTransactions() {
+
+  let latestTransactions: ITransaction[] = await GetTransactions()
+  if(latestTransactions.length > 10) latestTransactions = latestTransactions.slice(0, 10)
+  //const latestTransactions: ITransaction[] = []
+  console.log(latestTransactions)
 
   const calculateElapsedTime = (timestamp: string | number | Date) => {
     const transactionTime = new Date(timestamp).getTime();
@@ -48,11 +44,11 @@ function LatestTransactions() {
           {latestTransactions.map((transaction, index) => (
             <tr key={index}>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900"><Link href={`/transactions/${transaction.hash}`}><span className='text-blue-500'>{transaction.hash}</span></Link></div>
+                <div className="text-sm text-gray-900"><Link href={`/transactions/${transaction.transactionHash}`}><span className='text-blue-500'>{transaction.transactionHash.substring(0,4) + "..."}</span></Link></div>
                 <div className="text-xs text-gray-500">{calculateElapsedTime(transaction.timestamp)}</div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">From <Link href={"/addresses/0x0000..."}><span className = "text-blue-500">0x0000...</span></Link> to <Link href={"/addresses/0x0000..."}><span className = "text-blue-500">0x0001...</span></Link></div>
+                <div className="text-sm text-gray-900">From <Link href={"/addresses/"+transaction.from}><span className = "text-blue-500">{transaction.from.substring(0,4) + "..."}</span></Link> to <Link href={"/addresses/"+transaction.to}><span className = "text-blue-500">{transaction.to.substring(0,4) + "..."}</span></Link></div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="text-sm text-gray-900">{transaction.value} DCL</div>

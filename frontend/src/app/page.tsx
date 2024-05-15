@@ -1,13 +1,17 @@
-'use client'
-
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from "@/components/Navbar";
 import LatestBlocks from '@/components/LatestBlocks';
 import LatestTransactions from '@/components/LatestTransactions';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
+import { ITransaction, IBlock, GetBlockchain } from './api/Blockchain';
+import { GetTransactions } from './api/Transaction';
 
-const Home = () => {
+const Home = async () => {
+  const latestTransactions: ITransaction[] = await GetTransactions()
+  
+  const latestBlocks: IBlock[] = await GetBlockchain()
+  const latest: IBlock = latestBlocks[latestBlocks.length-1]
   return (
     <>
       <Navbar />
@@ -28,19 +32,19 @@ const Home = () => {
       <tr>
         <td>
           <div className="text-lg font-semibold text-gray-500">Transactions</div>
-          <div className="text-6xl font-bold text-zinc-500">10,000</div><br /><br />
+          <div className="text-6xl font-bold text-zinc-500">{latestTransactions.length}</div><br /><br />
         </td>
       </tr>
       <tr>
         <td>
           <div className="text-lg font-semibold text-gray-500">Blocks</div>
-          <div className="text-6xl font-bold text-zinc-500">10,000</div><br /><br />
+          <div className="text-6xl font-bold text-zinc-500">{latestBlocks.length}</div><br /><br />
         </td>
       </tr>
       <tr>
         <td>
           <div className="text-lg font-semibold text-gray-500">Last Finalized Block</div>
-          <div className="text-6xl font-bold text-zinc-500"><Link href={`/transactions/#123456`}><span className='text-blue-500'>#123456</span></Link></div>
+          <div className="text-6xl font-bold text-zinc-500"><Link href={`/blocks/${latest.blockInfo.blockHash}`}><span className='text-blue-500'>{latest.blockInfo.blockHash.substring(0,8) + "..."}</span></Link></div>
         </td>
       </tr>
     </tbody>
@@ -67,3 +71,4 @@ const Home = () => {
 };
 
 export default Home;
+

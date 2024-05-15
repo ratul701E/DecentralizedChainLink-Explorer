@@ -1,27 +1,16 @@
+import GetAddressDetails, { GetAddressBalance } from '@/app/api/Address';
+import { ITransaction } from '@/app/api/Blockchain';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar'
 import Link from 'next/link';
 import React from 'react'
 
-function Address({ params }: { params: { address: string } }) {
-
-  const addressData = {
-    balance: 123456,
-    firstTransactionSent: '0x011010',
-    lastTransactionSent: '0x001001'
-  };
-  const transactionData = [
-    { transactionHash: 1, method: "Transfer", block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: "Transfer", block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: "Transfer", block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: "Transfer", block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: "Transfer", block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: "Transfer", block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: "Transfer", block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: "Transfer", block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: "Transfer", block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: "Transfer", block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-  ];
+async function Address({ params }: { params: { address: string } }) {
+  const transactions: ITransaction[] = await GetAddressDetails(params.address)
+  const first_ : ITransaction = transactions[0]
+  const last_ : ITransaction = transactions[transactions.length-1]
+  const isTransAvailable = transactions.length > 0
+  const bal : any = await GetAddressBalance(params.address)
   
   return (
     
@@ -34,17 +23,17 @@ function Address({ params }: { params: { address: string } }) {
           </div>
           <div className="border-t border-gray-200">
             <dl>
-              <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <div className="bg-white-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt className="text-sm font-medium text-gray-500">DCL Balance</dt>
-                <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{addressData.balance}</dd>
+                <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{bal.balance}</dd>
               </div>
-              <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <div className="bg-white-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt className="text-sm font-medium text-gray-500">First Transaction Sent</dt>
-                <dd className="mt-1 text-sm text-gray-900 sm:col-span-2"><Link href={`/transactions/${addressData.firstTransactionSent}`}><span className='text-blue-500'>{addressData.firstTransactionSent}</span></Link></dd>
+                <dd className="mt-1 text-sm text-gray-900 sm:col-span-2"><Link href={`/transactions/${isTransAvailable && first_.transactionHash}`}><span className='text-blue-500'>{isTransAvailable && first_.transactionHash.substring(0,16) + "..."}</span></Link></dd>
               </div>
               <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt className="text-sm font-medium text-gray-500">Last Transaction Sent</dt>
-                <dd className="mt-1 text-sm text-gray-900 sm:col-span-2"><Link href={`/transactions/${addressData.lastTransactionSent}`}><span className='text-blue-500'>{addressData.lastTransactionSent}</span></Link></dd>
+                <dd className="mt-1 text-sm text-gray-900 sm:col-span-2"><Link href={`/transactions/${isTransAvailable && last_.transactionHash}`}><span className='text-blue-500'>{isTransAvailable && last_.transactionHash.substring(0,16) + "..."}</span></Link></dd>
               </div>
             </dl>
           </div>
@@ -62,14 +51,14 @@ function Address({ params }: { params: { address: string } }) {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {transactionData.map((transaction, index) => (
+              {transactions.map((transaction, index) => (
                 <tr key={index}>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><Link href={`/transactions/${transaction.transactionHash}`}><span className='text-blue-500'>{transaction.transactionHash}</span></Link></td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{transaction.method}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><Link href={`/transactions/${transaction.transactionHash}`}><span className='text-blue-500'>{transaction.transactionHash.substring(0,4) + "..."}</span></Link></td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{"Transfer"}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><Link href={`/blocks/${transaction.block}`}><span className='text-blue-500'>{transaction.block}</span></Link></td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{transaction.age}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><Link href={`/addresses/${transaction.from}`}><span className='text-blue-500'>{transaction.from}</span></Link></td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><Link href={`/addresses/${transaction.to}`}><span className='text-blue-500'>{transaction.to}</span></Link></td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{transaction.timestamp}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><Link href={`/addresses/${transaction.from}`}><span className='text-blue-500'>{transaction.from.substring(0,4) + "..."}</span></Link></td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><Link href={`/addresses/${transaction.to}`}><span className='text-blue-500'>{transaction.to.substring(0,4) + "..."}</span></Link></td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{transaction.value} DCL</td>
                 </tr>
               ))}

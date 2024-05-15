@@ -2,21 +2,14 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
+import { ITransaction } from '../api/Blockchain';
+import { GetTransactions } from '../api/Transaction';
 
-function Transactions() {
+async function Transactions() {
   
-  const transactionData = [
-    { transactionHash: 1, method: "Transfer", block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: "Transfer", block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: "Transfer", block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: "Transfer", block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: "Transfer", block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: "Transfer", block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: "Transfer", block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: "Transfer", block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: "Transfer", block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-    { transactionHash: 1, method: "Transfer", block: 10001, age: '5 minutes ago', from: '0x1234...', to: '0x1234...', value: '10'},
-  ];
+  const transactionData: ITransaction[] = await GetTransactions()
+  const latest = transactionData[transactionData.length-1]
+  const oldest = transactionData[0]
 
   const convertToCSV = () => {
     const csvContent =
@@ -30,10 +23,10 @@ function Transactions() {
       <Navbar />
       <div className="container mx-auto px-4 mt-8">
         <h2 className="font-semibold mb-8 mt-4">Transactions</h2>
-        <h2 className="mb-10 font-semibold">Last Transaction <Link href={`/transactions/19869880`}><span className='text-blue-500'>#19869880</span></Link></h2>
+        <h2 className="mb-10 font-semibold">Last Transaction <Link href={`/transactions/${oldest.transactionHash}`}><span className='text-blue-500'>{oldest.transactionHash}</span></Link></h2>
         <br />
         <h2 className="text-sm mb-12">
-            2,369,458,379 transactions found in total
+            {transactionData.length} transactions found in total
         <a
           href={convertToCSV()}
           download="transactions-data.csv"
@@ -58,12 +51,12 @@ function Transactions() {
             <tbody className="bg-white divide-y divide-gray-200">
               {transactionData.map((transaction, index) => (
                 <tr key={index}>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><Link href={`/transactions/${transaction.transactionHash}`}><span className='text-blue-500'>{transaction.transactionHash}</span></Link></td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{transaction.method}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><Link href={`/transactions/${transaction.transactionHash}`}><span className='text-blue-500'>{transaction.transactionHash.substring(0,4) + "..."}</span></Link></td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{"Transfer"}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><Link href={`/blocks/${transaction.block}`}><span className='text-blue-500'>{transaction.block}</span></Link></td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{transaction.age}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><Link href={`/addresses/${transaction.from}`}><span className='text-blue-500'>{transaction.from}</span></Link></td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><Link href={`/addresses/${transaction.to}`}><span className='text-blue-500'>{transaction.to}</span></Link></td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{transaction.timestamp}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><Link href={`/addresses/${transaction.from}`}><span className='text-blue-500'>{transaction.from.substring(0,4) + "..."}</span></Link></td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><Link href={`/addresses/${transaction.to}`}><span className='text-blue-500'>{transaction.to.substring(0,4) + "..."}</span></Link></td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{transaction.value} DCL</td>
                 </tr>
               ))}

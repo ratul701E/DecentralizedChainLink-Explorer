@@ -60,7 +60,7 @@ function Documentation() {
   return (
     <>
       <Navbar />
-      <div className="mx-auto max-w-max p-6 shadow-md" style={{ margin: '40px' }}>
+      <div className="mx-auto max-w-max p-6 shadow-md" style={{ margin: '40px', padding: '40px' }}>
         <div className="mt-4">
           <h1 className="text-2xl font-bold mb-4 mb-12">Documentation</h1>
           <a
@@ -69,7 +69,7 @@ function Documentation() {
           className="text-blue-500 font-bold hover:underline"
           style={{float: 'right'}}
         >
-          Download PDF
+          Download PDF &nbsp;&nbsp;&nbsp;
         </a>
         <br /><br /><br />
             In the digital age, where trust is often challenged and data security is paramount, blockchain emerges as a revolutionary technology promising to redefine various facets of our society. At its core, blockchain is a decentralized, immutable ledger that enables secure and transparent transactions among participants without the need for intermediaries. It serves as the foundational technology behind cryptocurrencies like Bitcoin, but its potential extends far beyond digital currencies, permeating industries ranging from finance and healthcare to supply chain management and voting systems.<br/><br/>

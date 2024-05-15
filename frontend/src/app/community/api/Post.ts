@@ -7,4 +7,19 @@ async function getAllPosts(): Promise<IPost[]> {
   return data
 }
 
+export async function addNewPost(formData: FormData) {
+  try{
+    await axios.post(process.env.NEXT_PUBLIC_API_ENDPOINT+"/posts", formData, {
+      headers: {
+          'Content-Type': 'application/json'
+      }
+  })
+    return true
+  }
+  catch(e){
+    console.log(e)
+    return false
+  }
+}
+
 export default getAllPosts

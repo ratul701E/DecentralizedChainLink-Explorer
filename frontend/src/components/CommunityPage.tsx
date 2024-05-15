@@ -47,7 +47,7 @@ function CommunityPage() {
             console.log(posts)
         }
         getPost();
-    }, [])
+    })
 
     return (
         <div className="container mx-auto p-4">

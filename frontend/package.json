@@ -3,18 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< HEAD
     "axios": "^1.6.8",
-=======
-    "chart.js": "^4.4.2",
-    "chartjs-adapter-date-fns": "^3.0.0",
->>>>>>> e98a8fd22458bf1d34bdadc367ff234c2a377540
     "json2csv": "^6.0.0-alpha.2",
     "jspdf": "^2.5.1",
     "next": "14.2.3",
