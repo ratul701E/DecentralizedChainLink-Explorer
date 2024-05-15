@@ -614,6 +614,12 @@ video {
 .top-0 {
   top: 0px;
 }
+.left-10 {
+  left: 2.5rem;
+}
+.top-8 {
+  top: 2rem;
+}
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -881,6 +887,10 @@ video {
   font-size: 0.75rem;
   line-height: 1rem;
 }
+.text-6xl {
+  font-size: 3.75rem;
+  line-height: 1;
+}
 .font-bold {
   font-weight: 700;
 }
@@ -929,6 +939,10 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.text-zinc-500 {
+  --tw-text-opacity: 1;
+  color: rgb(113 113 122 / var(--tw-text-opacity));
 }
 .placeholder-gray-500::placeholder {
   --tw-placeholder-opacity: 1;
