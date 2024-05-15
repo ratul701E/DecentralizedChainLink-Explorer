@@ -9,7 +9,7 @@ export class VoteEntity {
   id: number;
 
   @Column()
-  voteType: string;
+  voteType: number;
 
   @ManyToOne(() => UserEntity)
   user: UserEntity;
