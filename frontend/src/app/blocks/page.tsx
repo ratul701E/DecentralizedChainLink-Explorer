@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Link from 'next/link';
+import Footer from '@/components/Footer';
 
 function Blocks() {
   const blocksData = [
@@ -63,6 +64,8 @@ function Blocks() {
           </table>
         </div>
       </div>
+      <br /><br /><br /><br />
+      <Footer/>
     </>
   );
 }

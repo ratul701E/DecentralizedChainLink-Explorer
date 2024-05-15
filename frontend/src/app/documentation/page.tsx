@@ -3,6 +3,7 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import jsPDF from 'jspdf';
+import Footer from '@/components/Footer';
 
 function Documentation() {
 
@@ -91,6 +92,8 @@ function Documentation() {
             Looking ahead, the future of blockchain appears promising, with continued advancements in technology, adoption across diverse industries, and the emergence of new use cases and applications. As blockchain continues to evolve, it has the potential to reshape our world, empowering individuals, organizations, and societies with greater trust, transparency, and security in the digital age.<br/><br/>
         </div>
       </div>
+      <br /><br /><br /><br />
+      <Footer/>
     </>
   );
 }

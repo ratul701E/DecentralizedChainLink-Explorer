@@ -1,3 +1,4 @@
+import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar'
 import Link from 'next/link';
 import React from 'react'
@@ -44,7 +45,8 @@ function Block({ params }: { params: { blockHash: string } }) {
             </dl>
           </div>
         </div>
-        <br /><br /><br />
+        <br /><br /><br /><br />
+        <Footer/>
     </>
   )
 

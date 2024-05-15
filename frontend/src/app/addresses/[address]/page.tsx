@@ -1,3 +1,4 @@
+import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar'
 import Link from 'next/link';
 import React from 'react'
@@ -76,7 +77,8 @@ function Address({ params }: { params: { address: string } }) {
           </table>
         </div>
         </div>
-        <br /><br /><br />
+        <br /><br /><br /><br />
+        <Footer/>
     </>
     
   )
