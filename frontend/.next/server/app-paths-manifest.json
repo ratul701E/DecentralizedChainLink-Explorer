@@ -1,7 +1,5 @@
 {
-  "/documentation/page": "app/documentation/page.js",
-  "/blocks/[blockHash]/page": "app/blocks/[blockHash]/page.js",
-  "/blocks/page": "app/blocks/page.js",
-  "/transactions/page": "app/transactions/page.js",
-  "/transactions/[transactionHash]/page": "app/transactions/[transactionHash]/page.js"
+  "/_not-found/page": "app/_not-found/page.js",
+  "/page": "app/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
 }
