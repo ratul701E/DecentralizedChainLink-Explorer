@@ -1,4 +1,6 @@
+import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import Link from 'next/link';
 import React from 'react';
 
 function Transaction() {
@@ -28,7 +30,7 @@ function Transaction() {
             </div>
             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">Block</dt>
-              <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{transactionData.block}</dd>
+              <dd className="mt-1 text-sm text-gray-900 sm:col-span-2"><Link href={`/blocks/${transactionData.block}`}><span className='text-blue-500'>{transactionData.block}</span></Link></dd>
             </div>
             <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">Timestamp</dt>
@@ -36,11 +38,11 @@ function Transaction() {
             </div>
             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">From</dt>
-              <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{transactionData.from}</dd>
+              <dd className="mt-1 text-sm text-gray-900 sm:col-span-2"><Link href={`/addresses/${transactionData.from}`}><span className='text-blue-500'>{transactionData.from}</span></Link></dd>
             </div>
             <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">To</dt>
-              <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{transactionData.to}</dd>
+              <dd className="mt-1 text-sm text-gray-900 sm:col-span-2"><Link href={`/addresses/${transactionData.to}`}><span className='text-blue-500'>{transactionData.to}</span></Link></dd>
             </div>
             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">Value</dt>
@@ -49,7 +51,8 @@ function Transaction() {
           </dl>
         </div>
       </div>
-      <br /><br /><br />
+      <br /><br /><br /><br />
+      <Footer/>
     </>
   );
 }

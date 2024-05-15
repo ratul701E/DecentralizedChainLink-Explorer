@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Link from 'next/link';
+import Footer from '@/components/Footer';
 
 function Transactions() {
   
@@ -69,6 +70,8 @@ function Transactions() {
             </tbody>
           </table>
         </div>
+        <br /><br /><br /><br />
+        <Footer/>
       </div>
     </>
   );

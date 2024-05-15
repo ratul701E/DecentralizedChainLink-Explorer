@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Link from 'next/link';
+import Footer from '@/components/Footer';
 
 function Blocks() {
   const blocksData = [
@@ -56,13 +57,15 @@ function Blocks() {
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><Link href={`/blocks/${block.blockNumber}`}><span className='text-blue-500'>{block.blockNumber}</span></Link></td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{block.age}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{block.transactions}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{block.validator}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><Link href={`/addresses/${block.validator}`}><span className='text-blue-500'>{block.validator}</span></Link></td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       </div>
+      <br /><br /><br /><br />
+      <Footer/>
     </>
   );
 }
