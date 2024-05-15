@@ -7,7 +7,7 @@ export default function Navbar () {
         <div className="flex items-center">
           <p className="text-black text-xl font-semibold cursor-pointer tracking-tight" style={{ fontFamily: 'Open Sans, sans-serif' }}>
             <Link href="/">
-              Decentralized Chain Link
+              DCLscan
             </Link>
           </p>
         </div>
@@ -25,11 +25,6 @@ export default function Navbar () {
           <p className="text-black hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium cursor-pointer tracking-tight" style={{ fontFamily: 'Open Sans, sans-serif' }}>
             <Link href="/transactions">
               Transactions
-            </Link>
-          </p>
-          <p className="text-black hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium cursor-pointer tracking-tight" style={{ fontFamily: 'Open Sans, sans-serif' }}>
-            <Link href="/addresses">
-              Addresses
             </Link>
           </p>
           <p className="text-black hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium cursor-pointer tracking-tight" style={{ fontFamily: 'Open Sans, sans-serif' }}>
